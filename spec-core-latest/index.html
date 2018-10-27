@@ -1,0 +1,1492 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="The Homie convention strives to be a communication definition on top of MQTT between IoT devices and controlling entities.">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.6">
+    
+    
+      
+        <title>Core Specification (latest) - Homie MQTT Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../extra.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#core-specification-latest" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="Homie MQTT Convention" class="md-header-nav__button md-logo">
+          
+            <img src="../banner.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Homie MQTT Convention
+              </span>
+              <span class="md-header-nav__topic">
+                Core Specification (latest)
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/homieiot/convention" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      homieiot/convention
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href=".." title="The Homie MQTT Convention" class="md-tabs__link md-tabs__link--active">
+        The Homie MQTT Convention
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../FAQ/" title="FAQ" class="md-tabs__link">
+          FAQ
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../Get_Involved/" title="Get Involved" class="md-tabs__link">
+          Get Involved
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../Implementations/" title="Implementations" class="md-tabs__link">
+          Implementations
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../_Commercial_products/" title=" Commercial products" class="md-tabs__link">
+           Commercial products
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+        <a href=".." title="Homie MQTT Convention" class="md-nav__button md-logo">
+        
+            <img src="../banner.png" width="48" height="48">
+        
+        </a>
+        Homie MQTT Convention
+    </label>
+    
+        <div class="md-nav__source">
+        
+
+
+  
+
+
+  <a href="https://github.com/homieiot/convention" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      homieiot/convention
+    </div>
+  </a>
+
+        </div>
+    
+    <ul class="md-nav__list" data-md-scrollfix>
+        
+            
+            
+            
+            
+            
+                
+
+
+  <li class="md-nav__item">
+    <a href=".." title="The Homie MQTT Convention" class="md-nav__link">
+      The Homie MQTT Convention
+    </a>
+  </li>
+
+            
+        
+            
+            
+            
+            
+            
+                
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Core Specification (latest)
+      </label>
+    
+    <a href="./" title="Core Specification (latest)" class="md-nav__link md-nav__link--active">
+      Core Specification (latest)
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#topology" title="Topology" class="md-nav__link">
+    Topology
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-topic" title="Base Topic" class="md-nav__link">
+    Base Topic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devices" title="Devices" class="md-nav__link">
+    Devices
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#device-attributes" title="Device Attributes" class="md-nav__link">
+    Device Attributes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-behavior" title="Device Behavior" class="md-nav__link">
+    Device Behavior
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-statistics" title="Device Statistics" class="md-nav__link">
+    Device Statistics
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nodes" title="Nodes" class="md-nav__link">
+    Nodes
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-attributes" title="Node Attributes" class="md-nav__link">
+    Node Attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" title="Properties" class="md-nav__link">
+    Properties
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#property-attributes" title="Property Attributes" class="md-nav__link">
+    Property Attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arrays" title="Arrays" class="md-nav__link">
+    Arrays
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broadcast-channel" title="Broadcast Channel" class="md-nav__link">
+    Broadcast Channel
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" title="----" class="md-nav__link">
+    ----
+  </a>
+  
+</li>
+      
+      
+        <li class="md-nav__item">
+          <a href="#__source" title="Source" class="md-nav__link md-nav__link--active">
+            Source
+          </a>
+        </li>
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+            
+        
+            
+            
+            
+            
+                
+            
+            
+        
+            
+            
+            
+            
+                
+            
+            
+        
+            
+            
+            
+            
+                
+            
+            
+        
+            
+            
+            
+            
+                
+            
+            
+        
+            
+            
+            
+            
+                
+            
+            
+        
+            
+            
+            
+            
+            
+                
+
+
+  <li class="md-nav__item">
+    <a href="../z_license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+            
+        
+            
+            
+            
+            
+            
+                
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      FAQ
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        FAQ
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FAQ/" title="FAQ" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+            
+        
+            
+            
+            
+            
+            
+                
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Get Involved
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Get Involved
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Get_Involved/" title="Get involved" class="md-nav__link">
+      Get involved
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+            
+        
+            
+            
+            
+            
+            
+                
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      Implementations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        Implementations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Implementations/" title="Implementations" class="md-nav__link">
+      Implementations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Implementations/controller_implementations/" title="Controller implementations" class="md-nav__link">
+      Controller implementations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Implementations/device_implementations/" title="Device implementations" class="md-nav__link">
+      Device implementations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+            
+        
+            
+            
+            
+            
+            
+                
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
+    
+    <label class="md-nav__link" for="nav-12">
+       Commercial products
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-12">
+         Commercial products
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../_Commercial_products/" title="Commercial product" class="md-nav__link">
+      Commercial product
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+            
+        
+    </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#topology" title="Topology" class="md-nav__link">
+    Topology
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-topic" title="Base Topic" class="md-nav__link">
+    Base Topic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devices" title="Devices" class="md-nav__link">
+    Devices
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#device-attributes" title="Device Attributes" class="md-nav__link">
+    Device Attributes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-behavior" title="Device Behavior" class="md-nav__link">
+    Device Behavior
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-statistics" title="Device Statistics" class="md-nav__link">
+    Device Statistics
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nodes" title="Nodes" class="md-nav__link">
+    Nodes
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-attributes" title="Node Attributes" class="md-nav__link">
+    Node Attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" title="Properties" class="md-nav__link">
+    Properties
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#property-attributes" title="Property Attributes" class="md-nav__link">
+    Property Attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arrays" title="Arrays" class="md-nav__link">
+    Arrays
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broadcast-channel" title="Broadcast Channel" class="md-nav__link">
+    Broadcast Channel
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" title="----" class="md-nav__link">
+    ----
+  </a>
+  
+</li>
+      
+      
+        <li class="md-nav__item">
+          <a href="#__source" title="Source" class="md-nav__link md-nav__link--active">
+            Source
+          </a>
+        </li>
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+
+
+    <ul class='menu'>
+        <li><a aria-haspopup='true'>Select version</a>
+            <ul class='dropdown' aria-label='submenu'>
+                
+                    <li>
+                        <a href="/spec-core-latest">latest <small>27. October 2018</small></a>
+                    </li>
+                
+                    <li>
+                        <a href="/spec-core-v3_0_1">v3.0.1 <small>27. October 2018</small></a>
+                    </li>
+                
+                    <li>
+                        <a href="/spec-core-v3_0_0">v3.0.0 <small>25. March 2018</small></a>
+                    </li>
+                
+                    <li>
+                        <a href="/spec-core-v2_0_1">v2.0.1 <small>24. March 2018</small></a>
+                    </li>
+                
+                    <li>
+                        <a href="/spec-core-v2_0_0">v2.0.0 <small>28. April 2017</small></a>
+                    </li>
+                
+                    <li>
+                        <a href="/spec-core-v1_5_0">v1.5.0 <small>19. June 2016</small></a>
+                    </li>
+                
+            </ul>
+        </li>
+    </ul>
+
+
+<h1 id="core-specification-latest">Core Specification (latest)<a class="headerlink" href="#core-specification-latest" title="Permanent link">&para;</a></h1>
+<h2 id="topology">Topology<a class="headerlink" href="#topology" title="Permanent link">&para;</a></h2>
+<p><strong>Devices:</strong>
+An instance of a physical piece of hardware is called a <em>device</em>.
+For example, a car, an Arduino/ESP8266 or a coffee machine.</p>
+<p><strong>Nodes:</strong>
+A <em>device</em> can expose multiple <em>nodes</em>.
+Nodes are independent or logically separable parts of a device.
+For example, a car might expose a <code>wheels</code> node, an <code>engine</code> node and a <code>lights</code> node.</p>
+<p>Nodes can be <strong>arrays</strong>.
+For example, instead of creating two <code>lights</code> node to control front lights and back lights independently, we can set the <code>lights</code> node to be an array with two elements.</p>
+<p><strong>Properties:</strong>
+A <em>node</em> can have multiple <em>properties</em>.
+Properties represent basic characteristics of the node/device, often given as numbers or finite states.
+For example the <code>wheels</code> node might expose an <code>angle</code> property.
+The <code>engine</code> node might expose a <code>speed</code>, <code>direction</code> and <code>temperature</code> property.
+The <code>lights</code> node might expose an <code>intensity</code> and a <code>color</code> property.</p>
+<p>Properties can be <strong>settable</strong>.
+For example, you don't want your <code>temperature</code> property to be settable in case of a temperature sensor (like the car example), but to be settable in case of a thermostat.</p>
+<p>Properties can be <strong>retained</strong>.
+A property is retained by default. A non-retained property would be useful for momentary events (door bell pressed).</p>
+<p>A combination of those flags compiles into this list:</p>
+<ul>
+<li><strong>retained + non-settable</strong>: The node publishes a property state (temperature sensor)</li>
+<li><strong>retained + settable</strong>: The node publishes a property state, and can receive commands for the property (by controller or other party) (lamp power)</li>
+<li><strong>non-retained + non-settable</strong>: The node publishes momentary events (door bell pressed)</li>
+<li><strong>non-retained + settable</strong>: The node publishes momentary events, and can receive commands for the property (by controller or other party) (brew coffee)</li>
+</ul>
+<p><strong>Attributes:</strong>
+<em>Devices, nodes and properties</em> have specific <em>attributes</em> characterizing them.
+Attributes are represented by topic identifier starting with <code>$</code>.
+The precise definition of attributes is important for the automatic discovery of devices following the Homie convention.</p>
+<p>Examples: A device might have an <code>IP</code> attribute, a node will have a <code>name</code> attribute, and a property will have a <code>unit</code> attribute.</p>
+<hr />
+<h3 id="base-topic">Base Topic<a class="headerlink" href="#base-topic" title="Permanent link">&para;</a></h3>
+<p>The base topic you will see in the following convention will be <code>homie/</code>.
+If this base topic does not suit your needs (in case of, e.g., a public broker), you can choose another.</p>
+<p>Be aware, that only the default base topic <code>homie/</code> is eligible for automatic discovery by third party controllers.</p>
+<hr />
+<h3 id="devices">Devices<a class="headerlink" href="#devices" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>homie</code> / <strong><code>device ID</code></strong>: this is the base topic of a device.
+Each device must have a unique device ID which adhere to the <a href="#topic-ids">ID format</a>.</li>
+</ul>
+<h4 id="device-attributes">Device Attributes<a class="headerlink" href="#device-attributes" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>homie</code> / <code>device ID</code> / <strong><code>$device-attribute</code></strong>:
+When the MQTT connection to the broker is established or re-established, the device MUST send its attributes to the broker immediately.</li>
+</ul>
+<table>
+  <tr>
+    <th>Topic</th>
+    <th>Direction</th>
+    <th>Description</th>
+    <th>Retained</th>
+    <th>Required</th>
+  </tr>
+  <tr>
+    <td>$homie</td>
+    <td>Device → Controller</td>
+    <td>Version of the Homie convention the device conforms to</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>$name</td>
+    <td>Device → Controller</td>
+    <td>Friendly name of the device</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>$state</td>
+    <td>Device → Controller</td>
+    <td>
+      See <a href="#device-behavior">Device behavior</a>
+    </td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>$localip</td>
+    <td>Device → Controller</td>
+    <td>IP of the device on the local network</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>$mac</td>
+    <td>Device → Controller</td>
+    <td>Mac address of the device network interface. The format MUST be of the type <code>A1:B2:C3:D4:E5:F6</code></td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>$fw/name</td>
+    <td>Device → Controller</td>
+    <td>Name of the firmware running on the device. Allowed characters are the same as the device ID</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>$fw/version</td>
+    <td>Device → Controller</td>
+    <td>Version of the firmware running on the device</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>$nodes</td>
+    <td>Device → Controller</td>
+    <td>
+      Nodes the device exposes, with format <code>id</code> separated by a <code>,</code> if there are multiple nodes.
+      To make a node an array, append <code>[]</code> to the ID.
+    </td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>$implementation</td>
+    <td>Device → Controller</td>
+    <td>An identifier for the Homie implementation (example <code>esp8266</code>)</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>$implementation/#</td>
+    <td>Controller → Device or Device → Controller</td>
+    <td>You can use any subtopics of <code>$implementation</code> for anything related to your specific Homie implementation.</td>
+    <td>Yes or No, depending of your implementation</td>
+    <td>No</td>
+  </tr>
+  <tr>
+    <td>$stats</td>
+    <td>Device → Controller</td>
+    <td>Specify all optional stats that the device will announce, with format <code>stats</code> separated by a <code>,</code> if there are multiple stats. See next section for an example</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>$stats/interval</td>
+    <td>Device → Controller</td>
+    <td>Interval in seconds at which the device refreshes its <code>$stats/+</code>: See next section for details about statistical attributes</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+</table>
+
+<p>For example, a device with an ID of <code>super-car</code> that comprises off a <code>wheels</code>, <code>engine</code> and a <code>lights</code> node would send:</p>
+<div class="codehilite"><pre><span></span><span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$homie</span> <span class="err">→</span> <span class="s">&quot;2.1.0&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$name</span> <span class="err">→</span> <span class="s">&quot;Super car&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$localip</span> <span class="err">→</span> <span class="s">&quot;192.168.0.10&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$mac</span> <span class="err">→</span> <span class="s">&quot;DE:AD:BE:EF:FE:ED&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$fw</span><span class="o">/</span><span class="n">name</span> <span class="err">→</span> <span class="s">&quot;weatherstation-firmware&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$fw</span><span class="o">/</span><span class="n">version</span> <span class="err">→</span> <span class="s">&quot;1.0.0&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$nodes</span> <span class="err">→</span> <span class="s">&quot;wheels,engine,lights[]&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$implementation</span> <span class="err">→</span> <span class="s">&quot;esp8266&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$stats</span><span class="o">/</span><span class="n">interval</span> <span class="err">→</span> <span class="s">&quot;60&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$state</span> <span class="err">→</span> <span class="s">&quot;ready&quot;</span>
+</pre></div>
+
+
+<h4 id="device-behavior">Device Behavior<a class="headerlink" href="#device-behavior" title="Permanent link">&para;</a></h4>
+<p>The <code>$state</code> device attribute represents, as the name suggests, the current state of the device.
+There are 6 different states:</p>
+<ul>
+<li><strong><code>init</code></strong>: this is the state the device is in when it is connected to the MQTT broker, but has not yet sent all Homie messages and is not yet ready to operate.
+This is the first message that must that must be sent.</li>
+<li><strong><code>ready</code></strong>: this is the state the device is in when it is connected to the MQTT broker, has sent all Homie messages and is ready to operate.
+You have to send this message after all other announcements message have been sent.</li>
+<li><strong><code>disconnected</code></strong>: this is the state the device is in when it is cleanly disconnected from the MQTT broker.
+You must send this message before cleanly disconnecting.</li>
+<li><strong><code>sleeping</code></strong>: this is the state the device is in when the device is sleeping.
+You have to send this message before sleeping.</li>
+<li><strong><code>lost</code></strong>: this is the state the device is in when the device has been "badly" disconnected.
+You must define this message as LWT.</li>
+<li><strong><code>alert</code></strong>: this is the state the device is when connected to the MQTT broker, but something wrong is happening. E.g. a sensor is not providing data and needs human intervention.
+You have to send this message when something is wrong.</li>
+</ul>
+<h4 id="device-statistics">Device Statistics<a class="headerlink" href="#device-statistics" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>homie</code> / <code>device ID</code> / <code>$stats</code>/ <strong><code>$device-statistic-attribute</code></strong>:
+The <code>$stats/</code> hierarchy allows to send device attributes that change over time. The device MUST send them every <code>$stats/interval</code> seconds.</li>
+</ul>
+<table>
+  <tr>
+    <th>Topic</th>
+    <th>Direction</th>
+    <th>Description</th>
+    <th>Retained</th>
+    <th>Required</th>
+  </tr>
+  <tr>
+    <td>$stats/uptime</td>
+    <td>Device → Controller</td>
+    <td>Time elapsed in seconds since the boot of the device</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>$stats/signal</td>
+    <td>Device → Controller</td>
+    <td>Signal strength in %</td>
+    <td>Yes</td>
+    <td>No</td>
+  </tr>
+  <tr>
+    <td>$stats/cputemp</td>
+    <td>Device → Controller</td>
+    <td>CPU Temperature in °C</td>
+    <td>Yes</td>
+    <td>No</td>
+  </tr>
+  <tr>
+    <td>$stats/cpuload</td>
+    <td>Device → Controller</td>
+    <td>
+      CPU Load in %.
+      Average of last <code>$interval</code> including all CPUs
+    </td>
+    <td>Yes</td>
+    <td>No</td>
+  </tr>
+  <tr>
+    <td>$stats/battery</td>
+    <td>Device → Controller</td>
+    <td>Battery level in %</td>
+    <td>Yes</td>
+    <td>No</td>
+  </tr>
+  <tr>
+    <td>$stats/freeheap</td>
+    <td>Device → Controller</td>
+    <td>Free heap in bytes</td>
+    <td>Yes</td>
+    <td>No</td>
+  </tr>
+  <tr>
+    <td>$stats/supply</td>
+    <td>Device → Controller</td>
+    <td>Supply Voltage in V</td>
+    <td>Yes</td>
+    <td>No</td>
+  </tr>
+</table>
+
+<p>For example, our <code>super-car</code> device with <code>$stats/interval</code> value "60" is supposed to send its current values every 60 seconds:</p>
+<div class="codehilite"><pre><span></span><span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$stats</span> <span class="err">→</span> <span class="s">&quot;uptime,cputemp,signal,battery&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$stats</span><span class="o">/</span><span class="n">uptime</span> <span class="err">→</span> <span class="s">&quot;120&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$stats</span><span class="o">/</span><span class="n">cputemp</span> <span class="err">→</span> <span class="s">&quot;48&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$stats</span><span class="o">/</span><span class="n">signal</span> <span class="err">→</span> <span class="s">&quot;24&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$stats</span><span class="o">/</span><span class="n">battery</span> <span class="err">→</span> <span class="s">&quot;80&quot;</span>
+</pre></div>
+
+
+<hr />
+<h3 id="nodes">Nodes<a class="headerlink" href="#nodes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>homie</code> / <code>device ID</code> / <strong><code>node ID</code></strong>: this is the base topic of a node.
+Each node must have a unique node ID on a per-device basis which adhere to the <a href="#topic-ids">ID format</a>.</li>
+</ul>
+<h4 id="node-attributes">Node Attributes<a class="headerlink" href="#node-attributes" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>homie</code> / <code>device ID</code> / <code>node ID</code> / <strong><code>$node-attribute</code></strong>:
+A node attribute MUST be one of these:</li>
+</ul>
+<table>
+  <tr>
+    <th>Topic</th>
+    <th>Direction</th>
+    <th>Description</th>
+    <th>Retained</th>
+    <th>Required</th>
+  </tr>
+  <tr>
+    <td>$name</td>
+    <td>Device → Controller</td>
+    <td>Friendly name of the Node</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>$type</td>
+    <td>Device → Controller</td>
+    <td>Type of the node</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>$properties</td>
+    <td>Device → Controller</td>
+    <td>
+      Properties the node exposes, with format <code>id</code> separated by a <code>,</code> if there are multiple nodes.
+    </td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+    <tr>
+       <td>$array</td>
+       <td>Device → Controller</td>
+       <td>Range separated by a <code>-</code>. e.g. <code>0-2</code> for an array with the indexes <code>0</code>, <code>1</code> and <code>2</code></td>
+       <td>Yes</td>
+       <td>Yes, if the node is an array</td>
+    </tr>
+</table>
+
+<p>For example, our <code>engine</code> node would send:</p>
+<div class="codehilite"><pre><span></span><span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">$name</span> <span class="err">→</span> <span class="s">&quot;Car engine&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">$type</span> <span class="err">→</span> <span class="s">&quot;V8&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">$properties</span> <span class="err">→</span> <span class="s">&quot;speed,direction,temperature&quot;</span>
+</pre></div>
+
+
+<hr />
+<h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>homie</code> / <code>device ID</code> / <code>node ID</code> / <strong><code>property ID</code></strong>: this is the base topic of a property.
+Each property must have a unique property ID on a per-node basis which adhere to the <a href="#topic-ids">ID format</a>.</p>
+</li>
+<li>
+<p>A property value (e.g. a sensor reading) is directly published to the property topic, e.g.:
+  <code>java
+  homie/super-car/engine/temperature → "21.5"</code></p>
+</li>
+</ul>
+<h4 id="property-attributes">Property Attributes<a class="headerlink" href="#property-attributes" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>homie</code> / <code>device ID</code> / <code>node ID</code> / <code>property ID</code> / <strong><code>$property-attribute</code></strong>:
+A property attribute MUST be one of these:</li>
+</ul>
+<table>
+    <tr>
+        <th>Topic</th>
+        <th>Direction</th>
+        <th>Description</th>
+        <th>Valid values</th>
+        <th>Retained</th>
+        <th>Required (Default)</th>
+    </tr>
+    <tr>
+       <td>$name</td>
+       <td>Device → Controller</td>
+       <td>Friendly name of the property.</td>
+       <td>Any String</td>
+       <td>Yes</td>
+       <td>No ("")</td>
+    </tr>
+    <tr>
+        <td>$settable</td>
+        <td>Device → Controller</td>
+        <td>Specifies whether the property is settable (<code>true</code>) or readonly (<code>false</code>)</td>
+        <td><code>true</code> or <code>false</code></td>
+        <td>Yes</td>
+        <td>No (<code>false</code>)</td>
+    </tr>
+    <tr>
+        <td>$retained</td>
+        <td>Device → Controller</td>
+        <td>Specifies whether the property is retained (<code>true</code>) or non-retained (<code>false</code>). Publishing to a non-retained property topic MUST always happen with the MQTT 'retain' flag off.</td>
+        <td><code>true</code> or <code>false</code></td>
+        <td>Yes</td>
+        <td>No (<code>true</code>)</td>
+    </tr>
+    <tr>
+        <td>$unit</td>
+        <td>Device → Controller</td>
+        <td>
+          A string containing the unit of this property.
+          You are not limited to the recommended values, although they are the only well known ones that will have to be recognized by any Homie consumer.
+        </td>
+        <td>
+            Recommended:<br>
+            <code>°C</code> Degree Celsius<br>
+            <code>°F</code> Degree Fahrenheit<br>
+            <code>°</code> Degree<br>
+            <code>L</code> Liter<br>
+            <code>gal</code> Galon<br>
+            <code>V</code> Volts<br>
+            <code>W</code> Watt<br>
+            <code>A</code> Ampere<br>
+            <code>%</code> Percent<br>
+            <code>m</code> Meter<br>
+            <code>ft</code> Feet<br>
+            <code>Pa</code> Pascal<br>
+            <code>psi</code> PSI<br>
+            <code>#</code> Count or Amount
+        </td>
+        <td>Yes</td>
+        <td>No ("")</td>
+    </tr>
+    <tr>
+       <td>$datatype</td>
+       <td>Device → Controller</td>
+       <td>Describes the format of data.</td>
+       <td>
+         <code>integer</code>,
+         <code>float</code>,
+         <code>boolean</code>,
+         <code>string</code>,
+         <code>enum</code>,
+         <code>color</code>
+       </td>
+       <td>Yes</td>
+       <td>No (<code>string</code>)</td>
+    </tr>
+    <tr>
+       <td>$format</td>
+       <td>Device → Controller</td>
+       <td>
+        Describes what are valid values for this property.
+       </td>
+       <td>
+         <ul>
+           <li>
+             <code>from:to</code> Describes a range of values e.g. <code>10:15</code>.
+             <br>Valid for datatypes <code>integer</code>, <code>float</code>
+           </li>
+           <li>
+             <code>value,value,value</code> for enumerating all valid values.
+             Escape <code>,</code> by using <code>,,</code>. e.g. <code>A,B,C</code> or <code>ON,OFF,PAUSE</code>.
+             <br>Valid for datatypes <code>enum</code>
+           </li>
+           <li>
+             <code>rgb</code> to provide colors in RGB format e.g. <code>255,255,0</code> for yellow.
+             <code>hsv</code> to provide colors in HSV format e.g. <code>60,100,100</code> for yellow.
+             <br>Valid for datatype <code>color</code>
+           </li>
+         </ul>
+       </td>
+       <td>Yes</td>
+       <td>No for $datatype <code>string</code>,<code>integer</code>,<code>float</code>,<code>boolean</code>. Yes for <code>enum</code>,<code>color</code></td>
+    </tr>
+</table>
+
+<p>For example, our <code>temperature</code> property would send:</p>
+<div class="codehilite"><pre><span></span><span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">temperature</span><span class="o">/</span><span class="n">$name</span> <span class="err">→</span> <span class="s">&quot;Engine temperature&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">temperature</span><span class="o">/</span><span class="n">$settable</span> <span class="err">→</span> <span class="s">&quot;false&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">temperature</span><span class="o">/</span><span class="n">$unit</span> <span class="err">→</span> <span class="s">&quot;°C&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">temperature</span><span class="o">/</span><span class="n">$datatype</span> <span class="err">→</span> <span class="s">&quot;float&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">temperature</span><span class="o">/</span><span class="n">$format</span> <span class="err">→</span> <span class="s">&quot;-20:120&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">engine</span><span class="o">/</span><span class="n">temperature</span> <span class="err">→</span> <span class="s">&quot;21.5&quot;</span>
+</pre></div>
+
+
+<ul>
+<li><code>homie</code> / <code>device ID</code> / <code>node ID</code> / <code>property ID</code> / <strong><code>set</code></strong>: the device can subscribe to this topic if the property is <strong>settable</strong> from the controller, in case of actuators.</li>
+</ul>
+<p>Homie is state-based.
+You don't tell your smartlight to <code>turn on</code>, but you tell it to put its <code>power</code> state to <code>on</code>.
+This especially fits well with MQTT, because of retained message.</p>
+<p>For example, a <code>kitchen-light</code> device exposing a <code>light</code> node would subscribe to <code>homie/kitchen-light/light/power/set</code> and it would receive:</p>
+<div class="codehilite"><pre><span></span><span class="n">homie</span><span class="o">/</span><span class="n">kitchen</span><span class="o">-</span><span class="n">light</span><span class="o">/</span><span class="n">light</span><span class="o">/</span><span class="n">power</span><span class="o">/</span><span class="n">set</span> <span class="err">←</span> <span class="s">&quot;true&quot;</span>
+</pre></div>
+
+
+<p>The device would then turn on the light, and update its <code>power</code> state.
+This provides pessimistic feedback, which is important for home automation.</p>
+<div class="codehilite"><pre><span></span><span class="n">homie</span><span class="o">/</span><span class="n">kitchen</span><span class="o">-</span><span class="n">light</span><span class="o">/</span><span class="n">light</span><span class="o">/</span><span class="n">power</span> <span class="err">→</span> <span class="s">&quot;true&quot;</span>
+</pre></div>
+
+
+<h3 id="arrays">Arrays<a class="headerlink" href="#arrays" title="Permanent link">&para;</a></h3>
+<p>A node can be an array if you've added <code>[]</code> to its ID in the <code>$nodes</code> device attribute, and if its <code>$array</code> attribute is set to the range of the array.
+Let's consider we want to control independently the front lights and back lights of our <code>super-car</code>. Our <code>lights</code> node array would look like this. Note that the topic for an element of the array node is the name of the node followed by a <code>_</code> and the index getting updated:</p>
+<div class="codehilite"><pre><span></span><span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">$nodes</span> <span class="err">→</span> <span class="s">&quot;lights[]&quot;</span>
+
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">lights</span><span class="o">/</span><span class="n">$name</span> <span class="err">→</span> <span class="s">&quot;Lights&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">lights</span><span class="o">/</span><span class="n">$properties</span> <span class="err">→</span> <span class="s">&quot;intensity&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">lights</span><span class="o">/</span><span class="n">$array</span> <span class="err">→</span> <span class="s">&quot;0-1&quot;</span>
+
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">lights</span><span class="o">/</span><span class="n">intensity</span><span class="o">/</span><span class="n">$name</span> <span class="err">→</span> <span class="s">&quot;Intensity&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">lights</span><span class="o">/</span><span class="n">intensity</span><span class="o">/</span><span class="n">$settable</span> <span class="err">→</span> <span class="s">&quot;true&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">lights</span><span class="o">/</span><span class="n">intensity</span><span class="o">/</span><span class="n">$unit</span> <span class="err">→</span> <span class="s">&quot;%&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">lights</span><span class="o">/</span><span class="n">intensity</span><span class="o">/</span><span class="n">$datatype</span> <span class="err">→</span> <span class="s">&quot;integer&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">lights</span><span class="o">/</span><span class="n">intensity</span><span class="o">/</span><span class="n">$format</span> <span class="err">→</span> <span class="s">&quot;0:100&quot;</span>
+
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">lights_0</span><span class="o">/</span><span class="n">$name</span> <span class="err">→</span> <span class="s">&quot;Back lights&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">lights_0</span><span class="o">/</span><span class="n">intensity</span> <span class="err">→</span> <span class="s">&quot;0&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">lights_1</span><span class="o">/</span><span class="n">$name</span> <span class="err">→</span> <span class="s">&quot;Front lights&quot;</span>
+<span class="n">homie</span><span class="o">/</span><span class="kd">super</span><span class="o">-</span><span class="n">car</span><span class="o">/</span><span class="n">lights_1</span><span class="o">/</span><span class="n">intensity</span> <span class="err">→</span> <span class="s">&quot;100&quot;</span>
+</pre></div>
+
+
+<p>Note that you can name each element in your array individually ("Back lights", etc.).</p>
+<hr />
+<h3 id="broadcast-channel">Broadcast Channel<a class="headerlink" href="#broadcast-channel" title="Permanent link">&para;</a></h3>
+<p>Homie defines a broadcast channel, so a controller is able to broadcast a message to every Homie devices:</p>
+<ul>
+<li><code>homie</code> / <code>$broadcast</code> / <strong><code>level</code></strong>: <code>level</code> is an arbitrary broadcast identifier.
+It must adhere to the <a href="#topic-ids">ID format</a>.</li>
+</ul>
+<p>For example, you might want to broadcast an <code>alert</code> event with the alert reason as the payload.
+Devices are then free to react or not.
+In our case, every buzzer of your home automation system would start buzzing.</p>
+<div class="codehilite"><pre><span></span><span class="n">homie</span><span class="o">/</span><span class="n">$broadcast</span><span class="o">/</span><span class="n">alert</span> <span class="err">←</span> <span class="s">&quot;Intruder detected&quot;</span>
+</pre></div>
+
+
+<p>Any other topic is not part of the Homie convention.</p>
+<h2 id="-">----<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
+
+  
+    <h2 id="__source">Source</h2>
+    
+    
+      
+    
+    
+    
+    <a href="https://github.com/homieiot/website-redesign/tree/master/README.md" title="README.md" class="md-source-file">
+      README.md
+    </a>
+  
+
+
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<!--
+<footer class="md-footer"> 
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+-->
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.5e60981f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
